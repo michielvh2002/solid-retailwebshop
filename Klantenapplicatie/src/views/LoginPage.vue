@@ -40,9 +40,10 @@ form {
     display: grid;
     grid-template-rows: 1fr 1fr;
   }
-  min-width: 20rem;
-  max-width: 30rem;
+  width: 25rem;
+  //max-width: 30rem;
   margin: 0 auto;
+  align-self: center;
   background-color: white;
   padding: 2rem;
   box-shadow: 5px 8px 3px 2px #888888;

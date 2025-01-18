@@ -4,8 +4,8 @@ import type { Retailer } from '@/types/retailer'
 import { updateRegisteredRetailers } from '@/utils/retailerHelper'
 import { giveAccessToTypeIndex } from '@/utils/typeIndexHelper'
 import { getDefaultSession } from '@inrupt/solid-client-authn-browser'
-import { Session } from 'inspector/promises'
 import { ref } from 'vue'
+import { toast } from 'vue3-toastify'
 
 const retailer = ref<Retailer>({
   name: '',
@@ -23,6 +23,34 @@ const retailer = ref<Retailer>({
     control: false,
   },
 })
+
+const loading = ref<boolean>(false)
+
+const update = async () => {
+  try {
+    loading.value = true
+    const session = getDefaultSession()
+    await updateRegisteredRetailers([retailer.value])
+    await giveAccessToTypeIndex(session.info.webId!, retailer.value.webId, false, session.fetch)
+    toast('successfully added a retailer', {
+      autoClose: 3000,
+      position: toast.POSITION.BOTTOM_LEFT,
+      toastStyle: {
+        color: 'green',
+      },
+    })
+  } catch (error) {
+    toast(error, {
+      autoClose: 3000,
+      position: toast.POSITION.BOTTOM_LEFT,
+      toastStyle: {
+        color: 'red',
+      },
+    })
+  } finally {
+    loading.value = false
+  }
+}
 </script>
 
 <template>
@@ -66,16 +94,10 @@ const retailer = ref<Retailer>({
         </div>
       </fieldset>
     </div>
-    <GeneralButton
-      @click="
-        async () => {
-          const session = getDefaultSession()
-          await updateRegisteredRetailers([retailer])
-          await giveAccessToTypeIndex(session.info.webId!, retailer.webId, false, session.fetch)
-        }
-      "
-      >Add</GeneralButton
-    >
+    <GeneralButton v-if="!loading" @click="update">Add</GeneralButton>
+    <div v-else class="loadercontainer">
+      <span class="loader"></span>
+    </div>
   </form>
 </template>
 
@@ -112,5 +134,28 @@ form {
 }
 .error {
   color: red;
+}
+.loadercontainer {
+  margin: 0 auto;
+  width: fit-content;
+}
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: #ff3d00;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

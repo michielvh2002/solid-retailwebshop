@@ -76,7 +76,9 @@ const retrieveTypeIndexUrl = (profiles: Array<SolidDataset>, isPrivate: boolean)
     const typeIndex = things.flatMap((thing) =>
       getUrlAll(thing, isPrivate ? privateTypeIndexRdf : publicTypeIndexRdf),
     )
-    if (typeIndex.length > 0) return typeIndex[0]
+    if (typeIndex.length > 0) {
+      return typeIndex[0]
+    }
   }
   throw new Error('No typeindex found')
 }

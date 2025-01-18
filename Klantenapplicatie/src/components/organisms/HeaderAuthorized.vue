@@ -15,5 +15,7 @@ header {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 1rem;
+  border-bottom: 1px solid black;
+  margin-bottom: 2rem;
 }
 </style>

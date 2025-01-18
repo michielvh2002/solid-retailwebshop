@@ -1,7 +1,10 @@
 import type { Retailer } from '@/types/retailer'
 import {
+  createThing,
   deleteSolidDataset,
   getSolidDataset,
+  getThing,
+  removeThing,
   saveSolidDatasetAt,
   setThing,
 } from '@inrupt/solid-client'
@@ -42,5 +45,29 @@ export const updateRegisteredRetailers = async (retailers: Array<Retailer>) => {
   retailersToRdf.forEach((thing) => {
     dataset = setThing(dataset, thing)
   })
+  await saveSolidDatasetAt(instanceUrl, dataset, { fetch: fetch })
+}
+
+export const deleteRetailer = async (retailer: Retailer) => {
+  retailer.demographics.append = false
+  retailer.demographics.write = false
+  retailer.demographics.read = false
+  retailer.demographics.control = false
+
+  retailer.orderHistory.append = false
+  retailer.orderHistory.write = false
+  retailer.orderHistory.read = false
+  retailer.orderHistory.control = false
+  const session = getDefaultSession()
+  if (!session.info.isLoggedIn) throw new Error('User is not logged in')
+  const fetch = session.fetch
+  const webId = session.info.webId!
+  const baseUrl = await getStorageUrl(webId)
+  const instanceUrl = baseUrl + '/retailer-access/retailer-access.ttl'
+  await updateRegisteredRetailers([retailer])
+
+  let dataset = await getSolidDataset(instanceUrl, { fetch: fetch })
+  const thing = createThing({ name: retailer.name })
+  dataset = removeThing(dataset, thing.url)
   await saveSolidDatasetAt(instanceUrl, dataset, { fetch: fetch })
 }
