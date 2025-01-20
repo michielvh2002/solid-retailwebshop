@@ -8,6 +8,7 @@ import { createPersistedState } from 'pinia-plugin-persistedstate'
 
 import App from './App.vue'
 import router from './router'
+import JsonViewer from 'vue3-json-viewer'
 
 const app = createApp(App)
 const pinia = createPinia()
@@ -19,5 +20,6 @@ pinia.use(
 
 app.use(pinia)
 app.use(router)
+app.use(JsonViewer)
 
 app.mount('#app')

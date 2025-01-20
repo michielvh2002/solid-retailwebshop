@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { getDemographicdataFrom, getOrdersFrom } from '@/utils/admin'
 import { ref } from 'vue'
+import { JsonViewer } from 'vue3-json-viewer'
+import 'vue3-json-viewer/dist/index.css'
 
 const props = defineProps({
   webid: {
@@ -52,12 +54,20 @@ const fetchOrderHistory = async () => {
       </div>
     </button>
   </div>
-  <pre v-if="demographicData !== ''">
-    {{ demographicData }}
-  </pre>
-  <pre v-if="orderHistory !== ''">
-    {{ orderHistory }}
-  </pre>
+  <JsonViewer
+    v-if="demographicData !== ''"
+    :value="JSON.parse(demographicData)"
+    copyable
+    boxed
+    sort
+    theme="jv-light"
+  />
+  <JsonViewer
+    v-if="orderHistory !== ''"
+    :value="JSON.parse(orderHistory)"
+    copyable
+    theme="jv-light"
+  />
 </template>
 
 <style scoped lang="scss">

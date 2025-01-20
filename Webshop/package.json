@@ -17,14 +17,18 @@
     "@inrupt/solid-client-authn-browser": "^2.3.0",
     "@inrupt/vocab-solid": "^1.0.4",
     "bootstrap": "^5.3.3",
+    "clipboard": "^2.0.11",
     "pinia": "^2.3.0",
     "pinia-plugin-persistedstate": "^4.2.0",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-json-viewer": "^3.0.4",
+    "vue-router": "^4.5.0",
+    "vue3-json-viewer": "^2.2.2"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",
     "@types/node": "^22.10.2",
+    "@types/vue3-json-viewer": "^2.2.0",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/eslint-config-prettier": "^10.1.0",
     "@vue/eslint-config-typescript": "^14.1.3",
