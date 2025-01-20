@@ -1,7 +1,3 @@
-Here’s a **README.md** based on the structure and details of your three applications described in Chapter 5 of your thesis:
-
----
-
 # Solid Webshop
 
 This project explores the integration of Solid Pods into a retail setting to support personalized marketing while ensuring user privacy and data control. The proof-of-concept demonstrates a decentralized and user-focused approach to marketing, aligning with Solid principles.
