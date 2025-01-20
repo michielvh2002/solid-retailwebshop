@@ -45,8 +45,7 @@ The webshop enables users to log in with their WebID and shop online. To run the
 ```bash
 cd Webshop
 npm install
-npm run build
-npm start
+npm run dev
 ```
 
 ---
@@ -58,8 +57,7 @@ The klantenapplicatie simplifies access control for users. To start the applicat
 ```bash
 cd Klantenapplicatie
 npm install
-npm run build
-npm start
+npm run dev
 ```
 
 ---
