@@ -66,8 +66,8 @@ const registerAsMember = async () => {
       Our WebId: <span>{{ WEBID_DELHAIZE }}</span>
     </p>
     <p>
-      You can add us <a href="" target="_blank">manually</a>, or use our
-      <a href="" target="_blank">application</a> to automate this process
+      You can add us <a href="http://localhost:5173/guide.html" target="_blank">manually</a>, or use
+      our <a href="http://localhost:5174" target="_blank">application</a> to automate this process
     </p>
   </div>
   <div class="permsdiv">

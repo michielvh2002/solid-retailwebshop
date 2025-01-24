@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manual Configuration Guide for Solid Pods</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #2c3e50;
+      }
+      ul {
+        margin: 10px 0;
+        padding-left: 20px;
+      }
+      code {
+        background: #eef;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+      .step {
+        background: #fff;
+        margin: 10px 0;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Manual Configuration Guide for Solid Pods</h1>
+    <p>
+      This guide explains how to manually configure your Solid Pod using the interface of a Pod
+      provider for storing order history and demographic data.
+    </p>
+
+    <div class="step">
+      <h2>Step 1: Log into Your Solid Pod</h2>
+      <ul>
+        <li>
+          Navigate to the website of your Pod provider (e.g.,
+          <a href="https://igrant.io" target="_blank">iGrant.io</a>,
+          <a href="https://inrupt.net" target="_blank">Inrupt</a>).
+        </li>
+        <li>Use your WebID credentials to log in.</li>
+        <li>
+          After logging in, explore the existing folder structure displayed in the Pod interface.
+        </li>
+      </ul>
+    </div>
+
+    <div class="step">
+      <h2>Step 2: Create a Folder Structure</h2>
+      <p>if you already have these files and referenced them in your type index, jump to step 4</p>
+      <ul>
+        <li><strong>Create a folder for demographic data:</strong></li>
+        <ul>
+          <li>Create a folder named <code>retaildata</code>.</li>
+          <li>Inside <code>retaildata</code>, create a file named <code>demographic.ttl</code>.</li>
+        </ul>
+        <li><strong>Create a folder for order history:</strong></li>
+        <ul>
+          <li>Create a folder named <code>order-history</code>.</li>
+          <li>Within <code>order-history</code>, create the following files:</li>
+          <ul>
+            <li><code>order.ttl</code></li>
+            <li><code>order-item.ttl</code></li>
+            <li><code>product.ttl</code></li>
+            <li><code>offer.ttl</code></li>
+          </ul>
+        </ul>
+      </ul>
+    </div>
+
+    <div class="step">
+      <h2>Step 3: Linking Resources</h2>
+      <ul>
+        <li>Register datasets in the Type Index for easier discoverability.</li>
+        <li>
+          Example entry in Turtle format:
+          <pre><code>@prefix solid: &lt;http://www.w3.org/ns/solid/terms#&gt;.
+&lt;#typeIndex&gt; a solid:TypeIndex ;
+    solid:instance &lt;/retaildata/demographic.ttl&gt; ;
+    solid:forClass &lt;https://schema.org/Person&gt; .
+</code></pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="step">
+      <h2>Step 4: Set Permissions</h2>
+      <ul>
+        <li>
+          Locate the ACL (Access Control List) management interface in your Pod provider's
+          dashboard.
+        </li>
+        <li>
+          Grant permissions for each folder or file to our WebID: https://id.inrupt.com/delhaizeeu.
+        </li>
+        <ul>
+          <li><strong>Read Access:</strong> Allows viewing the data.</li>
+          <li>
+            <strong>Write Access:</strong> Allows updating the data (e.g., adding new orders).
+          </li>
+          <li>
+            <strong>Append Access:</strong> Allows adding new entries without modifying existing
+            ones.
+          </li>
+        </ul>
+        <li>
+          Example ACL in Turtle format:
+          <pre><code>@prefix acl: &lt;http://www.w3.org/ns/auth/acl#&gt;.
+&lt;#readAccess&gt; a acl:Authorization ;
+    acl:agent &lt;https://retailer.example/profile/card#me&gt; ;
+    acl:accessTo &lt;/retaildata/demographic.ttl&gt; ;
+    acl:mode acl:Read .
+</code></pre>
+        </li>
+      </ul>
+    </div>
+
+    <p>For further assistance, consult your Pod provider's documentation or support team.</p>
+  </body>
+</html>
