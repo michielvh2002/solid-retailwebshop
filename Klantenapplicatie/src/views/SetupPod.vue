@@ -3,11 +3,9 @@ import GeneralButton from '@/components/atoms/GeneralButton.vue'
 import { setupPod } from '@/utils/setup'
 import { getDefaultSession } from '@inrupt/solid-client-authn-browser'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { toast } from 'vue3-toastify'
 const birthDate = ref('')
 const error = ref('')
-const router = useRouter()
 const loading = ref<boolean>(false)
 
 const executeSetup = async () => {

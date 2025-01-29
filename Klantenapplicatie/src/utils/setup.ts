@@ -5,8 +5,6 @@ import {
   createSolidDataset,
   getSolidDataset,
   getSolidDatasetWithAcl,
-  getThingAll,
-  getUrlAll,
   saveSolidDatasetAt,
   setThing,
 } from '@inrupt/solid-client'

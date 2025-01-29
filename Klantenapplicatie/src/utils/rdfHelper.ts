@@ -30,11 +30,9 @@ export const convertRetailersRdfToTs = (retailerDataset: SolidDataset): Array<Re
   const retailers: Array<Retailer> = []
 
   retailerThings.forEach((retailerThing) => {
-    // Extract basic properties
     const name = getStringNoLocale(retailerThing, RETAILER.name) || ''
     const webIdValue = getStringNoLocale(retailerThing, RETAILER.webId) || ''
 
-    // Extract demographics permissions
     const demographics = {
       read: getBoolean(retailerThing, `${RETAILER.demographics}#read`) || false,
       append: getBoolean(retailerThing, `${RETAILER.demographics}#append`) || false,
@@ -42,7 +40,6 @@ export const convertRetailersRdfToTs = (retailerDataset: SolidDataset): Array<Re
       control: getBoolean(retailerThing, `${RETAILER.demographics}#control`) || false,
     }
 
-    // Extract orderHistory permissions
     const orderHistory = {
       read: getBoolean(retailerThing, `${RETAILER.orderHistory}#read`) || false,
       append: getBoolean(retailerThing, `${RETAILER.orderHistory}#append`) || false,
@@ -50,7 +47,6 @@ export const convertRetailersRdfToTs = (retailerDataset: SolidDataset): Array<Re
       control: getBoolean(retailerThing, `${RETAILER.orderHistory}#control`) || false,
     }
 
-    // Construct the Retailer object
     const retailer: Retailer = {
       webId: webIdValue,
       name,

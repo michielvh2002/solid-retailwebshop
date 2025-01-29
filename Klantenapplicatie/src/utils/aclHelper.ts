@@ -33,13 +33,6 @@ export const createAclFor = async (instanceUrl: string, webid: string, fetch: an
   return await saveAclFor(ds, dsWithAcl, { fetch: fetch })
 }
 
-type Permissions = {
-  read: boolean
-  append: boolean
-  write: boolean
-  control: boolean
-}
-
 export const editOrderHistoryAclForAgent = async (
   webId: string,
   retailAccessInfo: Retailer,

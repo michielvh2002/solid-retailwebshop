@@ -8,7 +8,7 @@ import {
 import TableRow from '../molecules/TableRow.vue'
 import { onMounted, ref } from 'vue'
 import GeneralButton from '../atoms/GeneralButton.vue'
-import { toast, type ToastOptions } from 'vue3-toastify'
+import { toast } from 'vue3-toastify'
 
 let retailers = ref<Array<Retailer>>([])
 onMounted(async () => {

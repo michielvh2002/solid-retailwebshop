@@ -1,9 +1,7 @@
 import type { Retailer } from '@/types/retailer'
 import {
   createThing,
-  deleteSolidDataset,
   getSolidDataset,
-  getThing,
   removeThing,
   saveSolidDatasetAt,
   setThing,
